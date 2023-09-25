@@ -1,19 +1,18 @@
-
-import { Navbar } from "./components/layout/navbar/Navbar";
+import { ThemeProvider } from "@emotion/react";
 import ItemListContainer from "./components/pages/itemListContainer/ItemListContainer";
+import MaterialUi from "./components/pages/materialUi/MaterialUi";
+import { customTheme } from "./themeConfig";
+import PruebaResponsive from "./components/pages/pruebaResponsive/PruebaResponsive";
 
 function App() {
-  
-  let saludo = "Hola pepito como estas"
-
   return (
-    <div>
-      <Navbar />
-     
-      <ItemListContainer saludo={saludo} edad={12} />
-    </div>
+    <ThemeProvider theme={customTheme}>
+        <MaterialUi />
+        {/* <ItemListContainer /> */}
+        {/* <PruebaResponsive /> */}
+        
+    </ThemeProvider>
   );
 }
 
 export default App;
-
