@@ -1,9 +1,10 @@
+import ItemList from "./ItemList";
+
 const ItemListContainer = () => {
-  return (
-    <div>
-      <h1>Item list container</h1>
-    </div>
-  );
+
+  console.log("me monte")
+  
+  return <ItemList />;
 };
 
 export default ItemListContainer;
