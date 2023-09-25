@@ -1,19 +1,27 @@
-import { useState } from "react";
 import CounterContainer from "./components/common/counter/CounterContainer";
 import { Navbar } from "./components/layout/navbar/Navbar";
 import ItemListContainer from "./components/pages/itemListContainer/ItemListContainer";
 
 function App() {
-  const [montar, setMontar] = useState(false);
-
   return (
     <>
       <Navbar />
-      <button onClick={() => setMontar(!montar)}>Montar/desmontar</button>
-
-      {montar && <CounterContainer stock={20} />}
+      <ItemListContainer />
+      <CounterContainer />
+      <h2>Hola</h2>
     </>
   );
 }
 
 export default App;
+
+// const sumar = ()=>{
+
+//   let a = 15
+//   let b = 12
+
+//   let nombre= "juan"
+
+//   return a b nombre
+
+// }
