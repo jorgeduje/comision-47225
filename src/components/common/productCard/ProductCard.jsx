@@ -7,9 +7,9 @@ import {
   Typography,
 } from "@mui/material";
 
-const ProductCard = ({ item }) => {
+const ProductCard = ({ item,  deleteProduct, modificar }) => {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ width: 345 }}>
       <CardMedia
         sx={{ height: 140 }}
         image={item.img}
@@ -29,6 +29,12 @@ const ProductCard = ({ item }) => {
       <CardActions>
         <Button size="small" variant="outlined">
           Ver detalle
+        </Button>
+        <Button size="small" variant="contained" onClick={()=>deleteProduct(item.id)}>
+          Eliminar
+        </Button>
+        <Button size="small" variant="contained" onClick={()=>modificar(item.id)}>
+          MODIFICAR
         </Button>
       </CardActions>
     </Card>
