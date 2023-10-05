@@ -11,7 +11,7 @@ export let products = [
     },
     {
         id: 2,
-        title: "Nike",
+        title: "Wilson",
         price: 14500,
         stock: 5,
         description: "Ultra livianas y cuentan con camara de aire",

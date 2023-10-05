@@ -1,7 +1,7 @@
 import { useState } from "react";
 import CounterPresentacional from "./CounterPresentacional";
 
-const CounterContainer = ({ stock }) => {
+const CounterContainer = ({ stock, onAdd }) => {
   const [contador, setContador] = useState(1);
 
   const sumar = () => {
@@ -19,7 +19,7 @@ const CounterContainer = ({ stock }) => {
   };
 
   return (
-    <CounterPresentacional sumar={sumar} restar={restar} contador={contador} />
+    <CounterPresentacional sumar={sumar} restar={restar} contador={contador} onAdd={onAdd} />
   );
 };
 
