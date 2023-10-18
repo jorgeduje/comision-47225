@@ -1,23 +1,21 @@
 import { useEffect, useState } from "react";
 import { products } from "../../../productsMock";
 import { ItemDetail } from "./ItemDetail";
-import { useParams, useNavigate } from "react-router-dom"
+import { useParams } from "react-router-dom"
 
 const ItemDetailContainer = () => {
   const [productSelected, setProductSelected] = useState({});
 
   const { id } = useParams()
 
-  const navigate = useNavigate()
 
   
 
   useEffect(() => {
     let producto = products.find((product) => product.id === +id);
 
-    const getProduct = new Promise((resolve, reject) => {
+    const getProduct = new Promise((resolve) => {
       resolve(producto);
-      // reject("error");
     });
 
     getProduct
@@ -31,8 +29,7 @@ const ItemDetailContainer = () => {
       quantity: cantidad,
     };
     console.log("este es el producto que se agrega", obj);
-    // ACA NAVEGAMOS
-    navigate("/cart")
+    
   };
 
   return <ItemDetail productSelected={productSelected} onAdd={onAdd} />;
