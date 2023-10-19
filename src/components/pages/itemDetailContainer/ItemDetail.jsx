@@ -1,17 +1,35 @@
-import CounterContainer from "../../common/counter/CounterContainer"
-
-export const ItemDetail = ( {productSelected, onAdd, initial} ) => {
+import CounterContainer from "../../common/counter/CounterContainer";
+import "./ItemDetail.css";
+export const ItemDetail = ({ productSelected, onAdd, initial }) => {
   return (
     <div>
-        {/* aca todo el detalle */}
-            <h2>{productSelected.title}</h2>
-            <img src={productSelected.img} alt="" />
-            {
-              initial && <h5>Ya tienes { initial } en el carrito</h5>
-            }
-            
-        {/* Aca el contador */}
-        <CounterContainer stock={productSelected.stock} onAdd={onAdd} initial={initial} />
+      <div className={"containerItemDetail"}>
+        <div className={"containerImage"}>
+          <img src={productSelected.img} alt="" />
+        </div>
+
+        <div className={"containerDetail"}>
+          <h2 style={{ fontFamily: "monospace" }}>
+            <span style={{ fontSize: "23px" }}>Nombre:</span>{" "}
+            {productSelected.title}
+          </h2>
+          <h2 style={{ fontFamily: "monospace" }}>
+            <span style={{ fontSize: "23px" }}>Descripcion:</span>{" "}
+            {productSelected.description}
+          </h2>
+          <h2 style={{ fontFamily: "monospace" }}>
+            <span style={{ fontSize: "23px" }}>Precio:</span> $
+            {productSelected.price}.-
+          </h2>
+        </div>
+      </div>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <CounterContainer
+          stock={productSelected.stock}
+          onAdd={onAdd}
+          initial={initial}
+        />
+      </div>
     </div>
-  )
-}
+  );
+};

@@ -1,23 +1,7 @@
 import { useState } from "react";
 
 const Checkout = () => {
-  //    const [ nombre, setNombre ] = useState("")
-  //    const [ apellido, setApellido ] = useState("")
-  //    const [ email, setEmail ] = useState("")
 
-  //   const capturarNombre = (e) => {
-  //     setUserInfo( { ...userInfo, nombre: e.target.value  } )
-  //   };
-
-  //   const capturarApellido = (e) => {
-  //     setUserInfo( { ...userInfo, apellido: e.target.value  } )
-
-  //   };
-
-  //   const capturarEmail = (e) => {
-  //     setUserInfo( { ...userInfo, email: e.target.value  } )
-
-  //   };
   const [userInfo, setUserInfo] = useState({
     nombre: "",
     apellido: "",
@@ -36,26 +20,6 @@ const Checkout = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // ACA IRIA TODO LO QUE QUIERAN HACER
-    // axios.post( "http-----", {nombre, apellido, email})
-    // nombre ---> 5 caracteres
-    // if (userInfo.nombre.length < 5 || !userInfo.email.includes("@")) {
-
-    //   if (userInfo.nombre.length < 5) {
-    //     console.log("entrooo")
-    //     setErrors({
-    //       ...errors,
-    //       nombre: "El nombre debe tener al menos 5 caracteres"
-    //     })
-    //   }
-
-    //   if (!userInfo.email.includes("@")) {
-    //     setErrors({ ...errors, email: "No corresponde a un email valido" });
-    //   }
-
-    //   return;
-    // }
 
     console.log(userInfo);
   };
