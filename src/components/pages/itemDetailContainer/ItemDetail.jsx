@@ -1,6 +1,9 @@
+import { Link } from "react-router-dom";
 import CounterContainer from "../../common/counter/CounterContainer";
 import "./ItemDetail.css";
-export const ItemDetail = ({ productSelected, onAdd, initial }) => {
+
+
+export const ItemDetail = ({ productSelected, onAdd, initial, showCounter }) => {
   return (
     <div>
       <div className={"containerItemDetail"}>
@@ -23,13 +26,25 @@ export const ItemDetail = ({ productSelected, onAdd, initial }) => {
           </h2>
         </div>
       </div>
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <CounterContainer
-          stock={productSelected.stock}
-          onAdd={onAdd}
-          initial={initial}
-        />
-      </div>
+
+      {
+        initial && <h4>Ya tienes {initial} unidades</h4>
+      }
+       
+
+      {
+         showCounter ?  <div style={{ display: "flex", justifyContent: "center" }}>
+          <CounterContainer
+            stock={productSelected.stock}
+            onAdd={onAdd}
+            initial={initial}
+          />
+        </div> :  <Link to="/cart">Terminar compra</Link>
+      }
+
+     
+
+     
     </div>
   );
 };
