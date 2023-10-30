@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { products } from "../../../productsMock";
 
 import ItemList from "./ItemList";
 import { useParams } from "react-router-dom";
-import BeatLoader from "react-spinners/BeatLoader";
 import Skeleton from "@mui/material/Skeleton";
+
+import { getDocs, collection, query, where } from "firebase/firestore";
+import { db } from "../../../firebaseConfig";
 
 const ItemListContainer = () => {
   const [items, setItems] = useState([]);
@@ -12,33 +13,31 @@ const ItemListContainer = () => {
   const { categoryName } = useParams();
 
   useEffect(() => {
-    const productosFiltrados = products.filter(
-      (product) => product.category === categoryName
-    );
 
-    const tarea = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(categoryName ? productosFiltrados : products);
-      }, 500);
-    });
+    let productsCollection = collection( db , "products" )
 
-    tarea.then((res) => setItems(res)).catch((error) => console.log(error));
+    let consulta = undefined
+
+    if (!categoryName) {
+      // SI NO EXISTE CATEGORYNAME ---> todos mis productos
+      consulta = productsCollection
+    } else {
+      // SI EXISTE CATEGORYNAME ---> parte de mis productos
+      consulta = query( productsCollection, where( "category" , "==" , categoryName  ))
+    }
+
+    getDocs(consulta).then( res => {
+      let newArray = res.docs.map( product => {
+        return {...product.data(), id: product.id}
+      })
+      setItems(newArray)
+    })
+
+
   }, [categoryName]);
-
-  // IF CON RETURN TEMPRANO
-  // if(items.length === 0){
-  //   return <h1>Cargando.......</h1>
-  // }
 
   return (
     <>
-      {/* Ternario  ? */}
-      {/* {items.length === 0 ? (
-        <BeatLoader size={40} color="red" cssOverride={{}}/>
-      ) : (
-        <ItemList items={items} />
-      )} */}
-
       {items.length === 0 ? (
         <div style={{ display: "flex", gap: 20 }}>
           <div>
@@ -65,18 +64,8 @@ const ItemListContainer = () => {
       ) : (
         <ItemList items={items} />
       )}
-
-      {/* <h3>Hola</h3>
-      <h3>chau</h3>
-      <h3>pepito</h3> */}
-
-      {/* con el operador and && */}
-
-      {/* {items.length > 0 && <h3>Ya termino de cargar</h3>} */}
     </>
   );
 };
 
 export default ItemListContainer;
-
-// let x = false && "hola"
