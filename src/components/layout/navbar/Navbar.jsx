@@ -6,6 +6,8 @@ import { db } from "../../../firebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
 
 export const Navbar = () => {
+
+  let rolDelUsuario = "Admin"
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -37,6 +39,11 @@ export const Navbar = () => {
             </Link>
           ))}
         </ul>
+        {
+          
+         rolDelUsuario === "Admin" && <Link to="/dashboard">Gestionar tienda</Link>
+
+        }
         <CartWidget />
       </div>
     </>
